@@ -1,170 +1,54 @@
 'use client';
 
-import { useState, useCallback } from 'react';
+import { useEffect, useState } from 'react';
 import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Label } from '@/components/ui/label';
-import { useToast } from '@/hooks/use-toast';
-import { Toaster } from '@/components/ui/sonner';
-import { toast } from 'sonner';
 import { useRouter } from 'next/navigation';
 import { ThemeToggle } from '@/components/ui/theme-toggle';
 
-// Simple debounce function
-function debounce(func, wait) {
-  let timeout;
-  return function executedFunction(...args) {
-    const later = () => {
-      clearTimeout(timeout);
-      func(...args);
-    };
-    clearTimeout(timeout);
-    timeout = setTimeout(later, wait);
-  };
+function JobsPreview() {
+  const [jobs, setJobs] = useState([]);
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    let active = true;
+    (async () => {
+      try {
+        const res = await fetch('/api/jobs?limit=6', { cache: 'no-store' });
+        const data = await res.json();
+        if (active) setJobs(Array.isArray(data.items) ? data.items : []);
+      } catch (e) {
+        if (active) setJobs([]);
+      } finally {
+        if (active) setLoading(false);
+      }
+    })();
+    return () => { active = false; };
+  }, []);
+  if (loading) return <p className="text-center text-sm text-muted-foreground">Memuat lowongan...</p>;
+  if (!jobs.length) return <p className="text-center text-sm text-muted-foreground">Belum ada lowongan.</p>;
+  return (
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+      {jobs.map((job) => (
+        <Card key={job.id} className="hover:shadow-lg transition-shadow">
+          <CardHeader>
+            <CardTitle className="text-base">{job.title}</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <Button asChild variant="outline" size="sm">
+              <a href={`/lowongan/${job.slug}`}>Lebih Lengkap</a>
+            </Button>
+          </CardContent>
+        </Card>
+      ))}
+    </div>
+  );
 }
 
 export default function Home() {
   const router = useRouter();
-  const [formData, setFormData] = useState({
-    fullName: '',
-    email: '',
-    phoneNumber: ''
-  });
-  const [loading, setLoading] = useState(false);
-  const [validationErrors, setValidationErrors] = useState({
-    email: '',
-    phoneNumber: ''
-  });
-  const [validating, setValidating] = useState({
-    email: false,
-    phoneNumber: false
-  });
-
-  // Function to open WhatsApp with pre-filled message
-  const openWhatsApp = (fullName) => {
-    const phoneNumber = '6285881981889'; // Format tanpa + dan spasi
-    const message = `Halo saya ${fullName} sudah melakukan registrasi akun di portal bekerjakeluarnegri.com`;
-    const encodedMessage = encodeURIComponent(message);
-    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
-
-    // Buka WhatsApp di tab baru
-    window.open(whatsappUrl, '_blank');
-  };
-
-  // Function to check if email or phone already exists
-  const checkExistingSubmission = async (email, phoneNumber) => {
-    if (!email && !phoneNumber) return;
-
-    try {
-      const params = new URLSearchParams();
-      if (email) params.append('email', email);
-      if (phoneNumber) params.append('phone', phoneNumber);
-
-      const response = await fetch(`/api/check-existing?${params}`);
-      const data = await response.json();
-
-      if (response.ok) {
-        setValidationErrors(prev => ({
-          ...prev,
-          email: data.emailExists ? 'Email sudah terdaftar. Gunakan email yang berbeda.' : '',
-          phoneNumber: data.phoneExists ? 'Nomor telepon sudah terdaftar. Gunakan nomor yang berbeda.' : ''
-        }));
-      }
-    } catch (error) {
-      console.error('Error checking existing submission:', error);
-    } finally {
-      setValidating(prev => ({
-        ...prev,
-        email: false,
-        phoneNumber: false
-      }));
-    }
-  };
-
-  // Debounced validation function
-  const debouncedValidation = useCallback(
-    debounce((email, phoneNumber) => {
-      checkExistingSubmission(email, phoneNumber);
-    }, 1000),
-    []
-  );
-
-  // Handle input changes with validation
-  const handleInputChange = (field, value) => {
-    setFormData(prev => ({ ...prev, [field]: value }));
-
-    // Clear previous errors
-    setValidationErrors(prev => ({ ...prev, [field]: '' }));
-
-    // Set validating state
-    if (field === 'email' && value) {
-      setValidating(prev => ({ ...prev, email: true }));
-      debouncedValidation(value, null);
-    } else if (field === 'phoneNumber' && value) {
-      setValidating(prev => ({ ...prev, phoneNumber: true }));
-      debouncedValidation(null, value);
-    }
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setLoading(true);
-
-    try {
-      const response = await fetch('/api/submissions', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      });
-
-      const data = await response.json();
-
-      if (response.ok) {
-        toast.success('Pendaftaran berhasil! Kami akan segera menghubungi Anda.');
-        setFormData({ fullName: '', email: '', phoneNumber: '' });
-        setValidationErrors({ email: '', phoneNumber: '' });
-
-        // Buka WhatsApp setelah registrasi berhasil
-        setTimeout(() => {
-          openWhatsApp(formData.fullName);
-        }, 1000); // Delay 1 detik agar toast muncul terlebih dahulu
-      } else {
-        if (response.status === 409) {
-          // Handle duplicate submission errors
-          if (data.existingEmail && data.existingPhone) {
-            setValidationErrors({
-              email: 'Email sudah terdaftar.',
-              phoneNumber: 'Nomor telepon sudah terdaftar.'
-            });
-          } else if (data.existingEmail) {
-            setValidationErrors({
-              email: 'Email sudah terdaftar.',
-              phoneNumber: ''
-            });
-          } else if (data.existingPhone) {
-            setValidationErrors({
-              email: '',
-              phoneNumber: 'Nomor telepon sudah terdaftar.'
-            });
-          }
-        }
-        toast.error(data.error || 'Gagal mengirim pendaftaran');
-      }
-    } catch (error) {
-      console.error('Error:', error);
-      toast.error('Terjadi kesalahan. Silakan coba lagi.');
-    } finally {
-      setLoading(false);
-    }
-  };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-teal-50/30 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900/90">
-      <Toaster />
-
       {/* Header */}
       <header className="bg-white/95 backdrop-blur-sm shadow-sm border-b border-slate-200/60 dark:bg-slate-900/95 dark:border-slate-700/60 sticky top-0 z-50">
         <div className="container mx-auto px-4 py-3 sm:py-4 md:py-4 lg:py-4 flex justify-between items-center">
@@ -232,105 +116,31 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Right Column - Form */}
-            <div className="lg:pl-4 lg:pl-8 md:mt-8 lg:mt-0">
-              <Card className="shadow-lg lg:shadow-xl border-0 bg-white/80 backdrop-blur-sm dark:bg-slate-800/80 dark:border-slate-700/60 mx-auto max-w-md md:max-w-lg lg:max-w-none">
+            {/* Right Column - CTA */}
+            <div className="lg:pl-8 md:mt-8 lg:mt-0">
+              <Card className="shadow-lg lg:shadow-xl border-0 bg-white/80 backdrop-blur-sm dark:bg-slate-800/80 dark:border-slate-700/60 mx-auto max-w-md md:max-w-lg lg:max-w-none text-center">
                 <CardHeader className="text-center pb-4 sm:pb-6 md:pb-6 px-4 sm:px-6 md:px-6">
-                  <CardTitle className="text-lg sm:text-xl md:text-xl lg:text-2xl font-semibold">Langkah Pertama Menuju Karir Impian Anda</CardTitle>
-                  <CardDescription className="text-sm sm:text-base md:text-base">
-                    Isi data diri Anda dengan lengkap dan benar untuk kami proses
-                  </CardDescription>
+                  <CardTitle className="text-lg sm:text-xl md:text-2xl font-semibold">Mulai Pendaftaran</CardTitle>
+                  <CardDescription className="text-sm sm:text-base md:text-base">Isi data Anda pada halaman berikutnya</CardDescription>
                 </CardHeader>
                 <CardContent className="px-4 sm:px-6 md:px-6">
-                  <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-5 md:space-y-5">
-                    <div className="space-y-2">
-                      <Label htmlFor="fullName" className="text-sm font-medium">Full Name *</Label>
-                      <Input
-                        id="fullName"
-                        type="text"
-                        placeholder="John Doe"
-                        value={formData.fullName}
-                        onChange={(e) => handleInputChange('fullName', e.target.value)}
-                        required
-                        className="h-10 sm:h-11 border-slate-200 dark:border-slate-700 dark:bg-slate-700/50 focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all duration-200"
-                      />
-                    </div>
-                    <div className="space-y-2">
-                      <Label htmlFor="email" className="text-sm font-medium">Email Address *</Label>
-                      <div className="relative">
-                        <Input
-                          id="email"
-                          type="email"
-                          placeholder="john@example.com"
-                          value={formData.email}
-                          onChange={(e) => handleInputChange('email', e.target.value)}
-                          required
-                          className={`h-10 sm:h-11 border-slate-200 dark:border-slate-700 dark:bg-slate-700/50 focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all duration-200 ${
-                            validationErrors.email ? 'border-red-500 focus:border-red-500' : ''
-                          } ${
-                            validating.email ? 'pr-10' : ''
-                          }`}
-                        />
-                        {validating.email && (
-                          <div className="absolute right-3 top-1/2 transform -translate-y-1/2">
-                            <div className="w-4 h-4 border-2 border-gray-300 dark:border-slate-600 border-t-primary rounded-full animate-spin"></div>
-                          </div>
-                        )}
-                      </div>
-                      {validationErrors.email && (
-                        <p className="text-xs sm:text-sm text-red-500 mt-1">{validationErrors.email}</p>
-                      )}
-                    </div>
-                    <div className="space-y-2">
-                      <Label htmlFor="phoneNumber" className="text-sm font-medium">Phone Number *</Label>
-                      <div className="relative">
-                        <Input
-                          id="phoneNumber"
-                          type="tel"
-                          placeholder="+62 812 3456 7890"
-                          value={formData.phoneNumber}
-                          onChange={(e) => handleInputChange('phoneNumber', e.target.value)}
-                          required
-                          className={`h-10 sm:h-11 border-slate-200 dark:border-slate-700 dark:bg-slate-700/50 focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all duration-200 ${
-                            validationErrors.phoneNumber ? 'border-red-500 focus:border-red-500' : ''
-                          } ${
-                            validating.phoneNumber ? 'pr-10' : ''
-                          }`}
-                        />
-                        {validating.phoneNumber && (
-                          <div className="absolute right-3 top-1/2 transform -translate-y-1/2">
-                            <div className="w-4 h-4 border-2 border-gray-300 dark:border-slate-600 border-t-primary rounded-full animate-spin"></div>
-                          </div>
-                        )}
-                      </div>
-                      {validationErrors.phoneNumber && (
-                        <p className="text-xs sm:text-sm text-red-500 mt-1">{validationErrors.phoneNumber}</p>
-                      )}
-                    </div>
-                    <Button
-                      type="submit"
-                      disabled={loading || validationErrors.email || validationErrors.phoneNumber}
-                      variant="brand"
-                      size="lg"
-                      className="w-full h-11 sm:h-12 text-sm sm:text-base font-semibold shadow-lg hover:shadow-xl"
-                    >
-                      {loading ? (
-                        <div className="flex items-center gap-2">
-                          <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
-                          <span className="text-sm sm:text-base">Mengirim...</span>
-                        </div>
-                      ) : (
-                        'Daftar Sekarang'
-                      )}
-                    </Button>
-                    <p className="text-xs text-muted-foreground text-center leading-relaxed px-2">
-                      Dengan mendaftar, Anda menyetujui syarat dan ketentuan kami.
-                    </p>
-                  </form>
+                  <div className="space-y-4 sm:space-y-5 md:space-y-5">
+                    <Button className="w-full h-12" onClick={() => router.push('/daftar')}>Daftar</Button>
+                  </div>
                 </CardContent>
               </Card>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* Lowongan Pekerjaan Section */}
+      <section className="container mx-auto px-4 py-8 sm:py-10 md:py-12 lg:py-14">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-6 sm:mb-8 md:mb-10">
+            <h2 className="text-2xl sm:text-3xl font-bold">Lowongan Pekerjaan</h2>
+          </div>
+          <JobsPreview />
         </div>
       </section>
 

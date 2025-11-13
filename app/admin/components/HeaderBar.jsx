@@ -104,6 +104,20 @@ export default function HeaderBar({ onSyncSheets, onLogout, showBackToAdmin = fa
             </div>
           </div>
           <div className="flex gap-1 sm:gap-2">
+            <div className="hidden sm:block">
+              <Link href="/admin/lowongan">
+                <Button
+                  variant="outline"
+                  size="sm"
+                  className="border-primary/20 text-primary hover:bg-primary/10 transition-all duration-200 min-h-[44px] px-2 sm:px-3"
+                >
+                  <svg className="w-4 h-4 sm:mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h7" />
+                  </svg>
+                  <span className="hidden sm:inline">Lowongan</span>
+                </Button>
+              </Link>
+            </div>
             {showBackToAdmin && (
               <Link href="/admin">
                 <Button

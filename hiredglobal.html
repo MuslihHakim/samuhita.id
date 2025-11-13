@@ -1,0 +1,939 @@
+﻿<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>Online Job Seeker </title>
+        <base href="https://hiredglobal.co" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Provides a seamless platform to explore thousands of job openings across industries and countries" />
+        <meta name="keywords" content="online ejoobseeker" />
+        
+ <!-- App favicon -->
+ <link rel="shortcut icon" href="./tmdesign/favicon.png">
+
+<!-- Choise Css -->
+<link rel="stylesheet" href="./assets/libs/choices.js/public/assets/styles/choices.min.css">
+
+<!-- Swiper Css -->
+<link rel="stylesheet" href="./assets/libs/swiper/swiper-bundle.min.css">
+
+<!-- Bootstrap Css -->
+<link href="./assets/css/bootstrap.min.css" id="bootstrap-style" rel="stylesheet"/>
+<!-- Icons Css -->
+<link href="./assets/css/icons.min.css" rel="stylesheet" />
+<!-- App Css-->
+<link href="./assets/css/app.min.css" id="app-style" rel="stylesheet" />
+<!--Custom Css-->
+       
+        <link rel="stylesheet" href="./tmlibrary/fontawesome-free/css/fontawesome.min.css" />
+        <link rel="stylesheet" href="./tmlibrary/fontawesome-free/css/brands.min.css" />
+        <link rel="stylesheet" href="./tmlibrary/fontawesome-free/css/solid.min.css" />
+       
+        <style>
+        .dashboard-box-start{
+            padding:150px 0px 80px 0px;
+        }
+ 
+        ul.ulnav-side {
+            margin: 0;
+            padding: 0
+        }
+
+        ul.ulnav-side li {
+            list-style: none;
+            float: left;
+            width: 100%;
+            border-bottom: solid 1px #eee;
+        }
+        
+        ul.ulnav-side li a{
+            font-size: 14px;
+        }
+        ul.ulnav-side li a:hover {
+            display: block;
+            background: #f5f5f5;
+        }
+
+        ul.ulnav-side li a.active {
+            display: block;
+            background: #f5f5f5;
+        }
+
+        ul.ulnav-side li.signout {
+            border: solid 1px #eee;
+        }
+
+        ul.ulnav-side li.signout a {
+            color: #ff0000;
+        }
+
+        .bg-theme{
+            background-color: #0AB7EA;
+        }
+        .icon-nav {
+            margin-right: 5px;
+            color: #0AB7EA;
+        }
+        .dashboard-icon-color {
+            color: #0AB7EA;
+        }
+        .card-display-content {
+            min-height: 70vh;
+        }
+        .label-radio{
+            display: inline-block;
+            padding:6px 8px;
+            border: solid 1px #EFF0F2;
+            border-radius: 4px;
+            margin:0px 6px 0px 0px;
+        }
+        .label-radio:hover{
+            cursor: pointer;
+            border: solid 1px #0AB7EA;
+        }
+        .nomorRecord{
+            display:inline-block;padding:1px 4px;margin-right:5px;border-right:dotted 2px #ddd;position:absolute;
+                                margin:-26px 0px 0px -10px;font-size:12px;
+        }
+        .statusData{
+            padding: 0px 2px;
+            display: inline-block;
+            border: solid 1px #dedede;
+            border-radius:4px;
+            font-size: 10px;
+        }
+        select{
+            background-color: #fff !important;
+        }
+        .label_status{
+            font-size: 10px;
+            padding:2px 4px;
+            border-radius: 4px;
+        }
+        @media screen and (min-width:800px) {
+            .card-menu-dashboard{
+                height:70vh;
+            }
+            ul.ulnav-side li a {
+                padding: 10px 10px;
+                display: block;
+                color: #333;
+                text-decoration: none;
+            }
+            .artikel_utube{
+                width: 100%;
+                height: 450px;
+            }
+            .blog_thumb{
+                height:230px;
+            }
+        }
+
+        @media screen and (max-width:799px) {
+            .card-menu-dashboard{
+                height:auto;
+            }
+            ul.ulnav-side li a {
+                padding: 10px 10px;
+                display: block;
+                color: #333;
+                text-decoration: none;
+                
+            }
+            .dashboard-box-start{
+                padding: 90px 0px 20px 0px;
+            }
+            .artikel_utube{
+                width: 100%;
+                height: 250px;
+            }
+            .blog_thumb{
+                height:auto;
+            }
+        }
+        div.detail_content ul{
+            
+            margin:0px;
+            padding:0px;
+        }
+        div.detail_content ul li{
+            list-style: none;
+            margin:0px 0px 4px 0px;
+            padding:0px 0px 0px 20px;
+        }
+        /* google frame */
+        .VIpgJd-ZVi9od-ORHb-OEVmcd{
+            display:none !important;
+        }
+        .goog-te-gadget-simple  {
+            padding: 4px!important;
+            border-radius: 4px!important;
+        } 
+        
+       
+        .bg_theme_secondary_light{
+            background-color: #c6f2ff;
+        }
+        .bg-category:hover{
+            background-color: #c6f2ff;
+        }
+        a.link_gray{
+            color:#666 !important;
+        }
+        a.link_gray:hover{
+            color:#ccc !important;
+        }
+        .active{
+            color: #0AB7EA !important;
+        }
+
+        /* over ride*/
+        .bg-primary{
+            background-color: #0AB7EA !important;
+        }
+        .btn-primary{
+            background-color: #0AB7EA !important;
+            border: solid 1px #0AB7EA !important;
+        }
+        .border-primary{
+            border: solid 1px #154D8B !important;
+        }
+        .btn-primary:hover{
+            background-color: #154D8B !important;
+            border: solid 1px #0AB7EA !important;
+        }
+        .bg-home{
+            background-color: #154D8B !important;
+        }
+        .filter-search-form i{
+            color: #0AB7EA !important;
+        }
+        .filter-search-form :active{
+            color: #333 !important;
+        }
+        .filter-search-form :hover{
+            color: #333 !important;
+        }
+        .popu-category-icon{
+            background-color:rgb(241, 245, 250) !important;
+        }
+        .btn-info{
+            background-color: #0AB7EA !important;
+            border: solid 1px #0AB7EA !important;
+        }
+        .btn-info:hover{
+            background-color:rgb(24, 152, 190) !important;
+
+        }
+        .job-box:hover{
+            border: solid 1px #154D8B !important;
+        }
+        a.text-primary{
+            color : #0AB7EA !important ;
+        }
+        a.nav-link:hover {
+            color: #0AB7EA !important;
+        }
+        .bg-primary-subtle {
+            background-color:rgb(241, 245, 250) !important;
+        }
+        .text-primary{
+            color : #0AB7EA !important ;
+        }
+        ul.pagination li.active > span.page-link{
+            background-color: #0AB7EA !important;
+        }
+    </style>    <!--Custom Css-->
+    <style>
+        @media screen and (max-width:900px){
+            .page-title-box {
+                position: relative;
+                padding-top: 130px;
+                padding-bottom: 40px;
+            }
+        }
+    </style>
+            <!-- Google tag (gtag.js) -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-9G719MZ8D2"></script>
+        <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-9G719MZ8D2');
+        </script>
+    </head>
+<body >
+    <div>
+        <div class="main-content">
+            <div class="page-content"><div>
+    <!--Navbar Start-->
+    <nav class="navbar navbar-expand-lg fixed-top sticky py-3 py-lg-2 " id="navbar">
+        <div class="container-fluid custom-container">
+            <a class="navbar-brand text-dark fw-bold me-auto" href="/">
+                <img src="./tmdesign/logo.png" height="50" alt="" class="logo-dark" />
+            </a>
+
+            <div>
+                                <button class="navbar-toggler me-3" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-label="Toggle navigation">
+                    <i class="mdi mdi-menu display-4"></i>
+                </button>
+            </div>
+            <div class="collapse navbar-collapse bg-white" id="navbarCollapse">
+                <div class="mt-4 d-lg-none"></div>
+                <ul class="navbar-nav mx-auto navbar-center ">
+                     <li class="nav-item ">
+                                    <a href="/" class="nav-link active">Home</a>
+                                </li> <li class="nav-item ">
+                                    <a href="/about-us" class="nav-link ">About Us</a>
+                                </li> <li class="nav-item ">
+                                    <a href="/jobs" class="nav-link ">Browse Jobs</a>
+                                </li> <li class="nav-item ">
+                                    <a href="/talents" class="nav-link ">Browse Talents</a>
+                                </li> <li class="nav-item ">
+                                    <a href="/contact" class="nav-link ">Contact</a>
+                                </li>                         
+                        <li class="nav-item dropdown dropdown-hover d-lg-none">
+                            <a class="nav-link" href="javascript:void(0)" id="pagesdoropdown" role="button" data-bs-toggle="dropdown">
+                                Sign In
+                                <div class="arrow-down"></div>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-sm dropdown-menu-center mt-0 pt-0" aria-labelledby="pagesdoropdown">
+                                <div class="row">
+                                    <a href="/jobseeker/sign-in" class="nav-link ps-4">As Recruiter</a>
+                                    <a href="/jobseeker/sign-in" class="nav-link ps-4">As Jobseeker</a>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown dropdown-hover d-lg-none">
+                            <a class="nav-link" href="javascript:void(0)" id="pagesdoropdownsignup" role="button" data-bs-toggle="dropdown">
+                                Sign Up
+                                <div class="arrow-down"></div>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-sm dropdown-menu-center mt-0 pt-0" aria-labelledby="pagesdoropdownsignup">
+                                <div class="row">
+                                    <a href="/jobseeker/sign-up" class="nav-link ps-4">As Recruiter</a>
+                                    <a href="/jobseeker/sign-up" class="nav-link ps-4">As Jobseeker</a>
+                                </div>
+                            </div>
+                        </li>
+                                    </ul><!--end navbar-nav-->
+                <!--end navabar-collapse-->
+                                    <ul class="header-menu list-inline d-flex align-items-center mb-0 d-none d-lg-block">
+                        <li class="list-inline-item">
+                            <button class="btn btn-outline-secondary btn-sm" type="button" data-bs-toggle="dropdown">Sign In <span class="fa-regular fa-chevron-down"></span></button>
+                            <div class="input-group">
+                                <ul class="dropdown-menu dropdown-toggle">
+                                    <li><a class="dropdown-item" href="/recruiter/sign-in"><span class="fa-regular fa-industry me-1  text-warning "></span> As Recruiter</a></li>
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
+                                    <li><a class="dropdown-item" href="/jobseeker/sign-in"><span class="me-1 fa-regular fa-user text-primary"></span> As Job Seeker</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="list-inline-item ">
+                            <a class="btn btn-primary btn-sm" href="/sign-up">Sign Up</a>
+                        </li>
+                    </ul><!--end header-menu-->
+                                    <!-- <div style="margin:0px 0px 0px 12px;"><div id="google_translate_element"></div></div> -->
+            </div>
+
+        </div>
+        <!--end container-->
+    </nav>
+    <!-- Navbar End -->                    <!-- START HOME -->
+                    <section class="bg-home bg-primary" id="home">
+                        <div class="bg-overlay"></div>
+                        <div class="container">
+                            <div class="row justify-content-center">
+                                <div class="col-lg-8">
+                                    <div class="text-center text-white mb-5">
+                                        <h1 class="display-5 fw-semibold mb-3">Search Between More Then <span class="text-warning fw-bold">10,000+</span>
+                                            Open Jobs.</h1>
+                                        <p class="fs-17" >Find jobs, create trackable resumes and enrich your applications.</p>
+                                    </div>
+                                </div>
+                                <!--end col-->
+                            </div>
+                            <!--end row-->
+                            <form action="/jobs" method="get">
+                                <div class="registration-form">
+                                    <div class="row g-0">
+                                        <div class="col-lg-3">
+                                            <div class="filter-search-form filter-border mt-3 mt-lg-0">
+                                                <i class="uil uil-briefcase-alt"></i>
+                                                <input type="search" id="job-title" class="form-control filter-input-box" placeholder="Job" name="keyword">
+                                            </div>
+                                        </div><!--end col-->
+                                        <div class="col-lg-3">
+                                            <div class="filter-search-form filter-border mt-3 mt-lg-0">
+                                                <i class="uil uil-map-marker"></i>
+                                                <select class="form-select "  name="country" id="choices-single-location" aria-label="Default select example" >
+                                                    <option value="0" >All countries</option>
+                                                    <option value="3" translate="no">Afghanistan</option><option value="6" translate="no">Albania</option><option value="60" translate="no">Algeria</option><option value="12" translate="no">American Samoa</option><option value="1" translate="no">Andorra Ukraine</option><option value="9" translate="no">Angola</option><option value="5" translate="no">Anguilla</option><option value="10" translate="no">Antarctica</option><option value="4" translate="no">Antigua and Barbuda</option><option value="11" translate="no">Argentina</option><option value="7" translate="no">Armenia</option><option value="15" translate="no">Aruba</option><option value="14" translate="no">Australia</option><option value="13" translate="no">Austria</option><option value="16" translate="no">Azerbaijan</option><option value="30" translate="no">Bahamas</option><option value="23" translate="no">Bahrain</option><option value="19" translate="no">Bangladesh</option><option value="18" translate="no">Barbados</option><option value="34" translate="no">Belarus</option><option value="20" translate="no">Belgium</option><option value="35" translate="no">Belize</option><option value="25" translate="no">Benin</option><option value="26" translate="no">Bermuda</option><option value="31" translate="no">Bhutan</option><option value="28" translate="no">Bolivia</option><option value="17" translate="no">Bosnia</option><option value="33" translate="no">Botswana</option><option value="32" translate="no">Bouvet</option><option value="29" translate="no">Brazil</option><option value="104" translate="no">British Indian</option><option value="27" translate="no">Brunei</option><option value="22" translate="no">Bulgaria</option><option value="21" translate="no">Burkina Faso</option><option value="24" translate="no">Burundi</option><option value="114" translate="no">Cambodia</option><option value="45" translate="no">Cameroon</option><option value="36" translate="no">Canada</option><option value="51" translate="no">Cape Verde</option><option value="121" translate="no">Cayman</option><option value="39" translate="no">Central African</option><option value="207" translate="no">Chad</option><option value="44" translate="no">Chile</option><option value="46" translate="no">China</option><option value="52" translate="no">Christmas Island</option><option value="37" translate="no">Cocos Islands</option><option value="47" translate="no">Colombia</option><option value="116" translate="no">Comoros</option><option value="38" translate="no">Congo</option><option value="40" translate="no">Congo</option><option value="43" translate="no">Cook Islands</option><option value="48" translate="no">Costa Rica</option><option value="42" translate="no">Cote D'Ivoire</option><option value="97" translate="no">Croatia</option><option value="50" translate="no">Cuba</option><option value="53" translate="no">Cyprus</option><option value="54" translate="no">Czech</option><option value="57" translate="no">Denmark</option><option value="56" translate="no">Djibouti</option><option value="58" translate="no">Dominica</option><option value="59" translate="no">Dominican Republic</option><option value="213" translate="no">East Timor</option><option value="61" translate="no">Ecuador</option><option value="63" translate="no">Egypt</option><option value="203" translate="no">El Salvador</option><option value="87" translate="no">Equatorial Guinea</option><option value="65" translate="no">Eritrea</option><option value="62" translate="no">Estonia</option><option value="67" translate="no">Ethiopia</option><option value="68" translate="no">Europe</option><option value="71" translate="no">Falkland</option><option value="73" translate="no">Faroe Islands</option><option value="70" translate="no">Fiji</option><option value="69" translate="no">Finland</option><option value="74" translate="no">France</option><option value="75" translate="no">France, Metropolitan</option><option value="80" translate="no">French Guiana</option><option value="170" translate="no">French Polynesia</option><option value="208" translate="no">French Southern Territories</option><option value="76" translate="no">Gabon</option><option value="84" translate="no">Gambia</option><option value="79" translate="no">Georgia</option><option value="55" translate="no">Germany</option><option value="81" translate="no">Ghana</option><option value="82" translate="no">Gibraltar</option><option value="88" translate="no">Greece</option><option value="83" translate="no">Greenland</option><option value="78" translate="no">Grenada</option><option value="86" translate="no">Guadeloupe</option><option value="91" translate="no">Guam</option><option value="90" translate="no">Guatemala</option><option value="85" translate="no">Guinea</option><option value="92" translate="no">Guinea-Bissau</option><option value="93" translate="no">Guyana</option><option value="98" translate="no">Haiti</option><option value="95" translate="no">Heard Island and McDonald Islands</option><option value="96" translate="no">Honduras</option><option value="94" translate="no">Hong Kong</option><option value="99" translate="no">Hungary</option><option value="107" translate="no">Iceland</option><option value="103" translate="no">India</option><option value="100" translate="no">Indonesia</option><option value="106" translate="no">Iran</option><option value="105" translate="no">Iraq</option><option value="101" translate="no">Ireland</option><option value="102" translate="no">Israel</option><option value="108" translate="no">Italy</option><option value="109" translate="no">Jamaica</option><option value="111" translate="no">Japan</option><option value="110" translate="no">Jordan</option><option value="122" translate="no">Kazakhstan</option><option value="112" translate="no">Kenya</option><option value="115" translate="no">Kiribati</option><option value="120" translate="no">Kuwait</option><option value="113" translate="no">Kyrgyzstan</option><option value="123" translate="no">Lao People's</option><option value="132" translate="no">Latvia</option><option value="124" translate="no">Lebanon</option><option value="129" translate="no">Lesotho</option><option value="128" translate="no">Liberia</option><option value="133" translate="no">Libya</option><option value="126" translate="no">Liechtenstein</option><option value="130" translate="no">Lithuania</option><option value="131" translate="no">Luxembourg</option><option value="143" translate="no">Macau</option><option value="139" translate="no">Macedonia</option><option value="137" translate="no">Madagascar</option><option value="151" translate="no">Malawi</option><option value="153" translate="no">Malaysia</option><option value="150" translate="no">Maldives</option><option value="140" translate="no">Mali</option><option value="148" translate="no">Malta</option><option value="138" translate="no">Marshall Islands</option><option value="145" translate="no">Martinique</option><option value="146" translate="no">Mauritania</option><option value="149" translate="no">Mauritius</option><option value="238" translate="no">Mayotte</option><option value="152" translate="no">Mexico</option><option value="72" translate="no">Micronesia</option><option value="136" translate="no">Moldova</option><option value="135" translate="no">Monaco</option><option value="142" translate="no">Mongolia</option><option value="147" translate="no">Montenegro</option><option value="134" translate="no">Morocco</option><option value="154" translate="no">Mozambique</option><option value="141" translate="no">Myanmar</option><option value="155" translate="no">Namibia</option><option value="164" translate="no">Nauru</option><option value="163" translate="no">Nepal</option><option value="161" translate="no">Netherlands</option><option value="243" translate="no">Netherlands Antilles</option><option value="156" translate="no">New Caledonia</option><option value="166" translate="no">New Zealand</option><option value="160" translate="no">Nicaragua</option><option value="157" translate="no">Niger</option><option value="159" translate="no">Nigeria</option><option value="165" translate="no">Niue</option><option value="158" translate="no">Norfolk Island</option><option value="118" translate="no">North Korea</option><option value="144" translate="no">Northern Mariana Islands</option><option value="162" translate="no">Norway</option><option value="167" translate="no">Oman</option><option value="173" translate="no">Pakistan</option><option value="180" translate="no">Palau</option><option value="178" translate="no">Palestinian</option><option value="168" translate="no">Panama</option><option value="171" translate="no">Papua New Guinea</option><option value="181" translate="no">Paraguay</option><option value="169" translate="no">Peru</option><option value="172" translate="no">Philippines</option><option value="176" translate="no">Pitcairn</option><option value="174" translate="no">Poland</option><option value="179" translate="no">Portugal</option><option value="177" translate="no">Puerto Rico</option><option value="182" translate="no">Qatar</option><option value="183" translate="no">Reunion</option><option value="184" translate="no">Romania</option><option value="185" translate="no">Russia</option><option value="186" translate="no">Rwanda</option><option value="193" translate="no">Saint Helena</option><option value="117" translate="no">Saint Kitts and Nevis</option><option value="125" translate="no">Saint Lucia</option><option value="175" translate="no">Saint Pierre and Miquelon</option><option value="229" translate="no">Saint Vincent and the Grenadines</option><option value="236" translate="no">Samoa</option><option value="198" translate="no">San Marino</option><option value="202" translate="no">Sao Tome and Principe</option><option value="187" translate="no">Saudi Arabia</option><option value="199" translate="no">Senegal</option><option value="49" translate="no">Serbia</option><option value="189" translate="no">Seychelles</option><option value="197" translate="no">Sierra Leone</option><option value="192" translate="no">Singapore</option><option value="196" translate="no">Slovakia</option><option value="194" translate="no">Slovenia</option><option value="188" translate="no">Solomon</option><option value="200" translate="no">Somalia</option><option value="239" translate="no">South Africa</option><option value="119" translate="no">South Korea</option><option value="66" translate="no">Spain</option><option value="127" translate="no">Sri Lanka</option><option value="190" translate="no">Sudan</option><option value="244" translate="no">Suriname</option><option value="201" translate="no">Suriname</option><option value="195" translate="no">Svalbard and Jan Mayen</option><option value="205" translate="no">Swaziland</option><option value="191" translate="no">Sweden</option><option value="41" translate="no">Switzerland</option><option value="204" translate="no">Syria</option><option value="220" translate="no">Taiwan</option><option value="211" translate="no">Tajikistan</option><option value="221" translate="no">Tanzania</option><option value="210" translate="no">Thailand</option><option value="209" translate="no">Togo</option><option value="212" translate="no">Tokelau</option><option value="216" translate="no">Tonga</option><option value="218" translate="no">Trinidad Tobago</option><option value="215" translate="no">Tunisia</option><option value="217" translate="no">Turkey</option><option value="214" translate="no">Turkmenistan</option><option value="206" translate="no">Turks and Caicos Islands</option><option value="219" translate="no">Tuvalu</option><option value="2" translate="no">UAE</option><option value="223" translate="no">Uganda</option><option value="77" translate="no">UK</option><option value="222" translate="no">Ukraine</option><option value="224" translate="no">United States Minor Outlying Islands</option><option value="226" translate="no">Uruguay</option><option value="225" translate="no">USA</option><option value="227" translate="no">Uzbekistan</option><option value="234" translate="no">Vanuatu</option><option value="228" translate="no">Vatican</option><option value="230" translate="no">Venezuela</option><option value="233" translate="no">Vietnam</option><option value="231" translate="no">Virgin Islands (British)</option><option value="232" translate="no">Virgin Islands (US)</option><option value="235" translate="no">Wallis and Futuna</option><option value="64" translate="no">Western Sahara</option><option value="237" translate="no">Yemen</option><option value="241" translate="no">Zaire</option><option value="240" translate="no">Zambia</option><option value="242" translate="no">Zimbabwe</option>                                                </select>
+                                            </div>
+                                        </div><!--end col-->
+                                        <div class="col-lg-3">
+                                            <div class="filter-search-form mt-3 mt-lg-0">
+                                                <i class="uil uil-clipboard-notes"></i>
+                                                <select class="form-select"   name="category" id="choices-single-categories" aria-label="Default select example">
+                                                    <option value="0">All categories</option>
+                                                    <option value="3">Accounting</option><option value="1">Administration</option><option value="53">Aestethician</option><option value="47">Agriculture</option><option value="4">Automotive</option><option value="51">Beautician</option><option value="2">Construction</option><option value="44">Domestic Worker</option><option value="8">Education And Trainning</option><option value="49">Engineer</option><option value="50">Factory Worker</option><option value="57">Farm</option><option value="9">financial</option><option value="59">General Services</option><option value="54">Hair Style</option><option value="6">Health and Medic</option><option value="56">Health Care</option><option value="21">Hospitality</option><option value="23">Human Resources</option><option value="5">Information Technology</option><option value="55">Manufacture</option><option value="10">Property And Real Estate</option><option value="48">Retail</option><option value="52">Salon</option><option value="46">Technician</option><option value="58">Transportation</option>                                                </select>
+                                            </div>
+                                        </div><!--end col-->
+                                        <div class="col-lg-3">
+                                            <div class="mt-3 mt-lg-0 h-100">
+                                                <button class="btn btn-primary submit-btn w-100 h-100" type="submit"><i class="uil uil-search me-1"></i> Find Job</button>
+                                            </div>
+                                        </div><!--end col-->
+                                    </div><!--end row-->
+                                </div><!--end container-->
+                            </form>
+                         
+                        </div>
+                        <!--end container-->
+                    </section>
+                    <!-- End Home -->
+                    
+
+                    <!-- START SHAPE -->
+                    <div class="position-relative">
+                        <div class="shape">
+                            <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" width="1440" height="150" preserveAspectRatio="none" viewBox="0 0 1440 220">
+                                <g mask="url(&quot;#SvgjsMask1004&quot;)" fill="none">
+                                    <path d="M 0,213 C 288,186.4 1152,106.6 1440,80L1440 250L0 250z" fill="rgba(255, 255, 255, 1)"></path>
+                                </g>
+                                <defs>
+                                    <mask id="SvgjsMask1004">
+                                        <rect width="1440" height="250" fill="#ffffff"></rect>
+                                    </mask>
+                                </defs>
+                            </svg>
+                        </div>
+                    </div>
+                    <!-- END SHAPE -->
+                                        <!-- START CATEGORY -->
+                    <section class="section">
+                        <div class="container">
+                            <div class="row justify-content-center">
+                                <div class="col-lg-6">
+                                    <div class="section-title text-center">
+                                        <h3 class="title">Browse Jobs Categories </h3>
+                                        <!-- <p class="text-muted">Erat pellentesque adipiscing commodo elit at imperdiet dui accumsan. Sodales neque sodales ut etiam sit amet nisl purus in.</p> -->
+                                    </div>
+                                </div>
+                                <!--end col-->
+                            </div>
+                            <!--end row-->
+                            <div class="row">
+                                <div class="col-lg-3 col-6 mt-lg-4 pt-lg-2 mt-2 pt-1">
+                                            <div class="popu-category-box rounded text-center">
+                                                <div class="popu-category-icon icons-md">
+                                                    <span class="fa-regular fa-money-bill-transfer" style="color: #0AB7EA !important;"></span>
+                                                </div>
+                                                <div class="popu-category-content mt-4">
+                                                    <a href="/job-category/accounting" class="text-dark stretched-link">
+                                                        <h5 class="fs-18">Accounting</h5>
+                                                    </a>
+                                                    <p class="text-muted mb-0">1 Jobs</p>
+                                                </div>
+                                            </div><!--end popu-category-box-->
+                                        </div><div class="col-lg-3 col-6 mt-lg-4 pt-lg-2 mt-2 pt-1">
+                                            <div class="popu-category-box rounded text-center">
+                                                <div class="popu-category-icon icons-md">
+                                                    <span class="fa-regular fa-house-flag" style="color: #0AB7EA !important;"></span>
+                                                </div>
+                                                <div class="popu-category-content mt-4">
+                                                    <a href="/job-category/administration" class="text-dark stretched-link">
+                                                        <h5 class="fs-18">Administration</h5>
+                                                    </a>
+                                                    <p class="text-muted mb-0">1 Jobs</p>
+                                                </div>
+                                            </div><!--end popu-category-box-->
+                                        </div><div class="col-lg-3 col-6 mt-lg-4 pt-lg-2 mt-2 pt-1">
+                                            <div class="popu-category-box rounded text-center">
+                                                <div class="popu-category-icon icons-md">
+                                                    <span class="fa-regular fa-car-rear" style="color: #0AB7EA !important;"></span>
+                                                </div>
+                                                <div class="popu-category-content mt-4">
+                                                    <a href="/job-category/automotive" class="text-dark stretched-link">
+                                                        <h5 class="fs-18">Automotive</h5>
+                                                    </a>
+                                                    <p class="text-muted mb-0">7 Jobs</p>
+                                                </div>
+                                            </div><!--end popu-category-box-->
+                                        </div><div class="col-lg-3 col-6 mt-lg-4 pt-lg-2 mt-2 pt-1">
+                                            <div class="popu-category-box rounded text-center">
+                                                <div class="popu-category-icon icons-md">
+                                                    <span class="fa-regular fa-user-graduate" style="color: #0AB7EA !important;"></span>
+                                                </div>
+                                                <div class="popu-category-content mt-4">
+                                                    <a href="/job-category/education-and-trainning" class="text-dark stretched-link">
+                                                        <h5 class="fs-18">Education And Trainning</h5>
+                                                    </a>
+                                                    <p class="text-muted mb-0">3 Jobs</p>
+                                                </div>
+                                            </div><!--end popu-category-box-->
+                                        </div><div class="col-lg-3 col-6 mt-lg-4 pt-lg-2 mt-2 pt-1">
+                                            <div class="popu-category-box rounded text-center">
+                                                <div class="popu-category-icon icons-md">
+                                                    <span class="fa-regular fa-money-check-dollar" style="color: #0AB7EA !important;"></span>
+                                                </div>
+                                                <div class="popu-category-content mt-4">
+                                                    <a href="/job-category/financial" class="text-dark stretched-link">
+                                                        <h5 class="fs-18">financial</h5>
+                                                    </a>
+                                                    <p class="text-muted mb-0">0 Jobs</p>
+                                                </div>
+                                            </div><!--end popu-category-box-->
+                                        </div><div class="col-lg-3 col-6 mt-lg-4 pt-lg-2 mt-2 pt-1">
+                                            <div class="popu-category-box rounded text-center">
+                                                <div class="popu-category-icon icons-md">
+                                                    <span class="fa-regular fa-stethoscope" style="color: #0AB7EA !important;"></span>
+                                                </div>
+                                                <div class="popu-category-content mt-4">
+                                                    <a href="/job-category/health-and-medic" class="text-dark stretched-link">
+                                                        <h5 class="fs-18">Health and Medic</h5>
+                                                    </a>
+                                                    <p class="text-muted mb-0">1 Jobs</p>
+                                                </div>
+                                            </div><!--end popu-category-box-->
+                                        </div><div class="col-lg-3 col-6 mt-lg-4 pt-lg-2 mt-2 pt-1">
+                                            <div class="popu-category-box rounded text-center">
+                                                <div class="popu-category-icon icons-md">
+                                                    <span class="fa-regular fa-user-group" style="color: #0AB7EA !important;"></span>
+                                                </div>
+                                                <div class="popu-category-content mt-4">
+                                                    <a href="/job-category/hospitality" class="text-dark stretched-link">
+                                                        <h5 class="fs-18">Hospitality</h5>
+                                                    </a>
+                                                    <p class="text-muted mb-0">83 Jobs</p>
+                                                </div>
+                                            </div><!--end popu-category-box-->
+                                        </div><div class="col-lg-3 col-6 mt-lg-4 pt-lg-2 mt-2 pt-1">
+                                            <div class="popu-category-box rounded text-center">
+                                                <div class="popu-category-icon icons-md">
+                                                    <span class="fa-regular fa-microchip" style="color: #0AB7EA !important;"></span>
+                                                </div>
+                                                <div class="popu-category-content mt-4">
+                                                    <a href="/job-category/information-technology" class="text-dark stretched-link">
+                                                        <h5 class="fs-18">Information Technology</h5>
+                                                    </a>
+                                                    <p class="text-muted mb-0">0 Jobs</p>
+                                                </div>
+                                            </div><!--end popu-category-box-->
+                                        </div>                            </div>
+                            <!--end row-->
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="mt-5 text-center">
+                                        <a href="/job-category" class="btn btn-primary btn-hover">Browse All Categories <i class="uil uil-arrow-right"></i></a>
+                                    </div>
+                                </div><!--end col-->
+                            </div><!--end row-->
+                        </div>
+                        <!--end container-->
+                    </section>
+                    <!-- END CATEGORY -->
+                    <!-- START JOB-LIST -->
+                    <section class="section bg-light">
+                        <div class="container">
+                            <div class="row justify-content-center">
+                                <div class="col-lg-6">
+                                    <div class="section-title text-center mb-4 pb-2">
+                                        <h4 class="title" >Job Offers</h4>
+                                        <p class="text-muted mb-1">Find your desired job, match your dream.</p>
+                                    </div>
+                                </div><!--end col-->
+                            </div><!--end row-->
+                                             <div class="job-box card mt-4">
+                    <div class="p-4">
+                            <div class="row align-items-center">
+
+                                <div class="col-lg-1 d-none d-lg-block ">
+                                    <a href="/job/251107589148964661/forklift-driver"><img src="./tmimages/recruiters/logo/2502/250224-profil-rec-70obewmxt.jpg" alt="" class="img-fluid rounded-3"></a>
+                                </div><!--end col-->
+
+                                <div class="col-lg-9 col-12">
+                                    <div class="mt-3 mt-lg-0">
+                                        <h5 class="fs-17 mb-1"><a href="/job/251107589148964661/forklift-driver" class="text-dark">Forklift Driver</a></h5>
+                                        <ul class="list-inline mb-0">
+                                            <li class="list-inline-item">
+                                                <p class="text-muted fs-14 mb-0">PT Permata Sukses Abadi</p>
+                                            </li>
+                                            <li class="list-inline-item">
+                                                <p class="text-muted fs-14 mb-0"><i class="mdi mdi-map-marker"></i> Slovakia</p>
+                                            </li>
+                                            <li class="list-inline-item">
+                                                        <p class="text-muted fs-14 mb-0"><i class="uil uil-wallet"></i>EUR900 /month</p>
+                                                    </li>                                            
+                                        </ul>
+                                        <div class="mt-2">
+                                            <span class="badge text-secondary mt-1 border">Contractual</span> 
+                                            <span class="badge bg-success-subtle text-success mt-1">Forklift Driver</span>
+                                        </div>
+                                    </div>
+                                </div> 
+                                <div class="col-lg-2 text-end mt-3 mt-lg-0">
+                                    <a href="/job/251107589148964661/forklift-driver" class="btn btn-sm btn-info">Detail <i class="mdi mdi-chevron-double-right"></i></a>
+                                </div>
+                            </div><!--end row-->
+                    </div>
+                </div><!--end job-box-->
+                                <div class="job-box card mt-4">
+                    <div class="p-4">
+                            <div class="row align-items-center">
+
+                                <div class="col-lg-1 d-none d-lg-block ">
+                                    <a href="/job/251106766947900316/construction-worker"><img src="./tmimages/recruiters/logo/2502/250224-profil-rec-70obewmxt.jpg" alt="" class="img-fluid rounded-3"></a>
+                                </div><!--end col-->
+
+                                <div class="col-lg-9 col-12">
+                                    <div class="mt-3 mt-lg-0">
+                                        <h5 class="fs-17 mb-1"><a href="/job/251106766947900316/construction-worker" class="text-dark">Construction Worker</a></h5>
+                                        <ul class="list-inline mb-0">
+                                            <li class="list-inline-item">
+                                                <p class="text-muted fs-14 mb-0">PT Permata Sukses Abadi</p>
+                                            </li>
+                                            <li class="list-inline-item">
+                                                <p class="text-muted fs-14 mb-0"><i class="mdi mdi-map-marker"></i> Bosnia</p>
+                                            </li>
+                                            <li class="list-inline-item">
+                                                        <p class="text-muted fs-14 mb-0"><i class="uil uil-wallet"></i>EUR600 /month</p>
+                                                    </li>                                            
+                                        </ul>
+                                        <div class="mt-2">
+                                            <span class="badge text-secondary mt-1 border">Contractual</span> 
+                                            <span class="badge bg-success-subtle text-success mt-1">Construction Worker</span>
+                                        </div>
+                                    </div>
+                                </div> 
+                                <div class="col-lg-2 text-end mt-3 mt-lg-0">
+                                    <a href="/job/251106766947900316/construction-worker" class="btn btn-sm btn-info">Detail <i class="mdi mdi-chevron-double-right"></i></a>
+                                </div>
+                            </div><!--end row-->
+                    </div>
+                </div><!--end job-box-->
+                                <div class="job-box card mt-4">
+                    <div class="p-4">
+                            <div class="row align-items-center">
+
+                                <div class="col-lg-1 d-none d-lg-block ">
+                                    <a href="/job/251106900538841435/furniture-worker"><img src="./tmimages/recruiters/logo/2502/250224-profil-rec-70obewmxt.jpg" alt="" class="img-fluid rounded-3"></a>
+                                </div><!--end col-->
+
+                                <div class="col-lg-9 col-12">
+                                    <div class="mt-3 mt-lg-0">
+                                        <h5 class="fs-17 mb-1"><a href="/job/251106900538841435/furniture-worker" class="text-dark">Furniture Worker</a></h5>
+                                        <ul class="list-inline mb-0">
+                                            <li class="list-inline-item">
+                                                <p class="text-muted fs-14 mb-0">PT Permata Sukses Abadi</p>
+                                            </li>
+                                            <li class="list-inline-item">
+                                                <p class="text-muted fs-14 mb-0"><i class="mdi mdi-map-marker"></i> Bosnia</p>
+                                            </li>
+                                            <li class="list-inline-item">
+                                                        <p class="text-muted fs-14 mb-0"><i class="uil uil-wallet"></i>EUR800 /month</p>
+                                                    </li>                                            
+                                        </ul>
+                                        <div class="mt-2">
+                                            <span class="badge text-secondary mt-1 border">Contractual</span> 
+                                            <span class="badge bg-success-subtle text-success mt-1">Furniture Worker</span>
+                                        </div>
+                                    </div>
+                                </div> 
+                                <div class="col-lg-2 text-end mt-3 mt-lg-0">
+                                    <a href="/job/251106900538841435/furniture-worker" class="btn btn-sm btn-info">Detail <i class="mdi mdi-chevron-double-right"></i></a>
+                                </div>
+                            </div><!--end row-->
+                    </div>
+                </div><!--end job-box-->
+                                <div class="job-box card mt-4">
+                    <div class="p-4">
+                            <div class="row align-items-center">
+
+                                <div class="col-lg-1 d-none d-lg-block ">
+                                    <a href="/job/251106886323150887/car-electrician"><img src="./tmimages/recruiters/logo/2502/250224-profil-rec-70obewmxt.jpg" alt="" class="img-fluid rounded-3"></a>
+                                </div><!--end col-->
+
+                                <div class="col-lg-9 col-12">
+                                    <div class="mt-3 mt-lg-0">
+                                        <h5 class="fs-17 mb-1"><a href="/job/251106886323150887/car-electrician" class="text-dark">Car Electrician</a></h5>
+                                        <ul class="list-inline mb-0">
+                                            <li class="list-inline-item">
+                                                <p class="text-muted fs-14 mb-0">PT Permata Sukses Abadi</p>
+                                            </li>
+                                            <li class="list-inline-item">
+                                                <p class="text-muted fs-14 mb-0"><i class="mdi mdi-map-marker"></i> Bosnia</p>
+                                            </li>
+                                            <li class="list-inline-item">
+                                                        <p class="text-muted fs-14 mb-0"><i class="uil uil-wallet"></i>EUR800 /month</p>
+                                                    </li>                                            
+                                        </ul>
+                                        <div class="mt-2">
+                                            <span class="badge text-secondary mt-1 border">Contractual</span> 
+                                            <span class="badge bg-success-subtle text-success mt-1">Car Electrician</span>
+                                        </div>
+                                    </div>
+                                </div> 
+                                <div class="col-lg-2 text-end mt-3 mt-lg-0">
+                                    <a href="/job/251106886323150887/car-electrician" class="btn btn-sm btn-info">Detail <i class="mdi mdi-chevron-double-right"></i></a>
+                                </div>
+                            </div><!--end row-->
+                    </div>
+                </div><!--end job-box-->
+                                <div class="job-box card mt-4">
+                    <div class="p-4">
+                            <div class="row align-items-center">
+
+                                <div class="col-lg-1 d-none d-lg-block ">
+                                    <a href="/job/251106654101281821/aluminum-joinery-fitter"><img src="./tmimages/recruiters/logo/2502/250224-profil-rec-70obewmxt.jpg" alt="" class="img-fluid rounded-3"></a>
+                                </div><!--end col-->
+
+                                <div class="col-lg-9 col-12">
+                                    <div class="mt-3 mt-lg-0">
+                                        <h5 class="fs-17 mb-1"><a href="/job/251106654101281821/aluminum-joinery-fitter" class="text-dark">Aluminum Joinery (Fitter)</a></h5>
+                                        <ul class="list-inline mb-0">
+                                            <li class="list-inline-item">
+                                                <p class="text-muted fs-14 mb-0">PT Permata Sukses Abadi</p>
+                                            </li>
+                                            <li class="list-inline-item">
+                                                <p class="text-muted fs-14 mb-0"><i class="mdi mdi-map-marker"></i> Bosnia</p>
+                                            </li>
+                                            <li class="list-inline-item">
+                                                        <p class="text-muted fs-14 mb-0"><i class="uil uil-wallet"></i>EUR600 /month</p>
+                                                    </li>                                            
+                                        </ul>
+                                        <div class="mt-2">
+                                            <span class="badge text-secondary mt-1 border">Contractual</span> 
+                                            <span class="badge bg-success-subtle text-success mt-1">Aluminum Joinery (Fitter)</span>
+                                        </div>
+                                    </div>
+                                </div> 
+                                <div class="col-lg-2 text-end mt-3 mt-lg-0">
+                                    <a href="/job/251106654101281821/aluminum-joinery-fitter" class="btn btn-sm btn-info">Detail <i class="mdi mdi-chevron-double-right"></i></a>
+                                </div>
+                            </div><!--end row-->
+                    </div>
+                </div><!--end job-box-->
+                                <div class="job-box card mt-4">
+                    <div class="p-4">
+                            <div class="row align-items-center">
+
+                                <div class="col-lg-1 d-none d-lg-block ">
+                                    <a href="/job/251106142127142258/aluminum-joinery-door"><img src="./tmimages/recruiters/logo/2502/250224-profil-rec-70obewmxt.jpg" alt="" class="img-fluid rounded-3"></a>
+                                </div><!--end col-->
+
+                                <div class="col-lg-9 col-12">
+                                    <div class="mt-3 mt-lg-0">
+                                        <h5 class="fs-17 mb-1"><a href="/job/251106142127142258/aluminum-joinery-door" class="text-dark">Aluminum Joinery (Door)</a></h5>
+                                        <ul class="list-inline mb-0">
+                                            <li class="list-inline-item">
+                                                <p class="text-muted fs-14 mb-0">PT Permata Sukses Abadi</p>
+                                            </li>
+                                            <li class="list-inline-item">
+                                                <p class="text-muted fs-14 mb-0"><i class="mdi mdi-map-marker"></i> Bosnia</p>
+                                            </li>
+                                            <li class="list-inline-item">
+                                                        <p class="text-muted fs-14 mb-0"><i class="uil uil-wallet"></i>EUR600 /month</p>
+                                                    </li>                                            
+                                        </ul>
+                                        <div class="mt-2">
+                                            <span class="badge text-secondary mt-1 border">Contractual</span> 
+                                            <span class="badge bg-success-subtle text-success mt-1">Aluminum Joinery (Door)</span>
+                                        </div>
+                                    </div>
+                                </div> 
+                                <div class="col-lg-2 text-end mt-3 mt-lg-0">
+                                    <a href="/job/251106142127142258/aluminum-joinery-door" class="btn btn-sm btn-info">Detail <i class="mdi mdi-chevron-double-right"></i></a>
+                                </div>
+                            </div><!--end row-->
+                    </div>
+                </div><!--end job-box-->
+                <div class="mt-5 text-center"><a href="/jobs" class="btn btn-primary btn-hover ">More Job <i class="uil uil-arrow-right"></i></a></div>                        </div>
+                        <!--end container-->
+                    </section>
+                    <!-- END JOB-LIST -->
+ 
+                    <!-- START BLOG -->
+                    <section class="section">
+                        <div class="container">
+                            <div class="row justify-content-center">
+                                <div class="col-lg-6">
+                                    <div class="section-title text-center mb-5">
+                                        <h3 class="title mb-3">Quick Career Tips</h3>
+                                        <!-- <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p> -->
+                                    </div>
+                                </div>
+                                <!--end col-->
+                            </div>
+                            <!--end row-->
+                            <div class="row">
+                                <div class="col-lg-4 col-md-6">
+                                                <div class="blog-box card p-2 mt-3">
+                                                    <div class="blog-img position-relative overflow-hidden blog_thumb">
+                                                        <a href="/blog/v41289ztu7au9965/minister-of-kp2mi-prepares-500000-workers-for-the-hospitality-sector"><img src="./tmimages/blogs/thumb/sv6tc6gwqhr3ulpb.jpg" alt="Minister of KP2MI Prepares 500.000 Workers for the Hospitality Sector" class="w-100 rounded"/></a>
+                                                    </div>
+                                                    <div class="card-body ">
+                                                        <a href="/blog/v41289ztu7au9965/minister-of-kp2mi-prepares-500000-workers-for-the-hospitality-sector" class="primary-link" title="Minister of KP2MI Prepares 500.000 Workers for the Hospitality Sector">
+                                                            <h5 class="fs-17" >Minister of KP2MI Prepares 500.000 Workers for the ...</h5>
+                                                        </a>
+                                                        <p class="text-muted">
+                                                            The government is preparing 500.000 Indonesian workers in ...
+                                                        </p>
+                                                        <a href="/blog/v41289ztu7au9965/minister-of-kp2mi-prepares-500000-workers-for-the-hospitality-sector" class="form-text text-primary">Read more <i class="mdi mdi-chevron-right align-middle"></i></a>
+                                                    </div>
+                                                </div>
+                                            </div><div class="col-lg-4 col-md-6">
+                                                <div class="blog-box card p-2 mt-3">
+                                                    <div class="blog-img position-relative overflow-hidden blog_thumb">
+                                                        <a href="/blog/limcumi7khe7bcqy/presiden-prabowo-sepakat-tingkatkan-perlindungan-pmi"><img src="./tmimages/blogs/thumb/urs07rwiuci74qzt.jpg" alt="Presiden Prabowo Sepakat Tingkatkan Perlindungan PMI" class="w-100 rounded"/></a>
+                                                    </div>
+                                                    <div class="card-body ">
+                                                        <a href="/blog/limcumi7khe7bcqy/presiden-prabowo-sepakat-tingkatkan-perlindungan-pmi" class="primary-link" title="Presiden Prabowo Sepakat Tingkatkan Perlindungan PMI">
+                                                            <h5 class="fs-17" >Presiden Prabowo Sepakat Tingkatkan Perlindungan</h5>
+                                                        </a>
+                                                        <p class="text-muted">
+                                                            Four ministers from the&nbsp;Indonesia Maju&nbsp;Cabinet ...
+                                                        </p>
+                                                        <a href="/blog/limcumi7khe7bcqy/presiden-prabowo-sepakat-tingkatkan-perlindungan-pmi" class="form-text text-primary">Read more <i class="mdi mdi-chevron-right align-middle"></i></a>
+                                                    </div>
+                                                </div>
+                                            </div><div class="col-lg-4 col-md-6">
+                                                <div class="blog-box card p-2 mt-3">
+                                                    <div class="blog-img position-relative overflow-hidden blog_thumb">
+                                                        <a href="/blog/47abs7doko0gp3m9/ugm-graduate-reveals-sky-high-living-costs-in-australia-whv-burns-a-hole-in-the-pocket"><img src="./tmimages/blogs/thumb/a2gdsrybltvpx90o.jpg" alt="UGM Graduate Reveals Sky-High Living Costs in Australia: WHV Burns a Hole in the Pocket" class="w-100 rounded"/></a>
+                                                    </div>
+                                                    <div class="card-body ">
+                                                        <a href="/blog/47abs7doko0gp3m9/ugm-graduate-reveals-sky-high-living-costs-in-australia-whv-burns-a-hole-in-the-pocket" class="primary-link" title="UGM Graduate Reveals Sky-High Living Costs in Australia: WHV Burns a Hole in the Pocket">
+                                                            <h5 class="fs-17" >UGM Graduate Reveals Sky-High Living Costs in Australia: ...</h5>
+                                                        </a>
+                                                        <p class="text-muted">
+                                                            Dea Rachma, a cum laude graduate from Gadjah Mada ...
+                                                        </p>
+                                                        <a href="/blog/47abs7doko0gp3m9/ugm-graduate-reveals-sky-high-living-costs-in-australia-whv-burns-a-hole-in-the-pocket" class="form-text text-primary">Read more <i class="mdi mdi-chevron-right align-middle"></i></a>
+                                                    </div>
+                                                </div>
+                                            </div>                                   
+                            </div>
+                            <!--end row-->
+                        </div>
+                        <!--end container-->
+                    </section>
+                    <!-- END BLOG --> 
+<!-- START FOOTER -->
+                <section class="bg-footer" style="background: url(../tmdesign/pattern-mesh.jpg)">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="footer-item mt-4 mt-lg-0 me-lg-5">
+                                    <h4 class="text-white mb-4">HiredGlobal.co</h4>
+                                    <p class="text-white-50">Revolutionizing Job Portal Experience with Advanced Talent Acquisition Solutions.</p>
+                                    <p class="text-white-50 mt-3">HIREDGLOBAL PTE. LTD. <br />
+                                    160 ROBINSON ROAD #14-04 SINGAPORE (068914)
+                                    <br /><a href="tel:+6583983677" class="btn text-white-50 p-0 mt-2"><span class="fa-regular fa-phone me-1"></span>+65 8398 3677</a> </p>
+                                    <ul class="footer-social-menu list-inline mb-0">
+                                        <li class="list-inline-item"><a href="#"><i class="uil uil-facebook-f"></i></a></li>
+                                        <li class="list-inline-item"><a href="#"><i class="uil uil-linkedin-alt"></i></a></li>
+                                        <li class="list-inline-item"><a href="#"><i class="uil uil-youtube"></i></a></li>
+                                        <li class="list-inline-item"><a href="#"><i class="uil uil-twitter"></i></a></li>
+                                    </ul>
+                                </div>
+                            </div><!--end col-->
+                            <div class="col-lg-3 col-6">
+                                <div class="footer-item mt-4 mt-lg-0">
+                                    <p class="fs-22 text-white mb-4">Information</p>
+                                    <ul class="list-unstyled footer-list mb-0">
+                                        <li><a href="/about-us" class="text-white"><i class="mdi mdi-chevron-right"></i> About Us</a></li>
+                                        <li><a href="/companies" class="text-white"><i class="mdi mdi-chevron-right"></i> Companies</a></li>
+                                        <li><a href="/blog" class="text-white"><i class="mdi mdi-chevron-right"></i> Blog</a></li>
+                                        <li><a href="/faqs" class="text-white"><i class="mdi mdi-chevron-right"></i> FAQ'S</a></li>
+                                        <li><a href="/contact" class="text-white"><i class="mdi mdi-chevron-right"></i> Contact</a></li>
+                                    </ul>
+                                </div>
+                            </div><!--end col-->
+                            <div class="col-lg-3 col-6">
+                                <div class="footer-item mt-4 mt-lg-0">
+                                    <p class="fs-16 text-white mb-4">&nbsp;</p>
+                                    <ul class="list-unstyled footer-list mb-0">
+                                        <li><a href="/jobs" class="text-white"><i class="mdi mdi-chevron-right"></i> Browse Jobs</a></li>
+                                        <li><a href="/job-category" class="text-white"><i class="mdi mdi-chevron-right"></i> Job Category</a></li>
+                                        <li><a href="/sign-up" class="text-white"><i class="mdi mdi-chevron-right"></i> Sign Up</a></li>
+                                        <li><a href="/privacy-policy" class="text-white"><i class="mdi mdi-chevron-right"></i> Privacy Policy</a></li>
+                                        <li><a href="/terms-and-conditions" class="text-white"><i class="mdi mdi-chevron-right"></i> Terms and Conditions</a></li>
+                                    </ul>
+                                </div>
+                            </div><!--end col-->
+                             
+                        </div><!--end row-->
+                    </div><!--end container-->
+                </section>
+                <!-- END FOOTER -->
+
+                <!-- START FOOTER-ALT -->
+                <div class="footer-alt">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <p class="text-white-50 text-center mb-0">
+                                    <script>document.write(new Date().getFullYear())</script> &copy; HiredGlobal 
+                                </p>
+                            </div><!--end col-->
+                        </div><!--end row-->
+                    </div><!--end container-->
+                </div>
+                <!-- END FOOTER -->
+                
+                
+
+        </div>
+    </div>
+</div> 
+<button onclick="topFunction()" id="back-to-top">
+    <i class="mdi mdi-arrow-up"></i>
+</button>
+<!--end back-to-top-->
+<!-- GOOGLE TRANSLATE -- >
+    <script type="text/javascript">
+        /*
+            function googleTranslateElementInit() {
+                new google.translate.TranslateElement({
+                    pageLanguage: 'en',
+                    includedLanguages: 'en,fr,id,it,no,ru,hi,nl,ja,la,de,zh-CN',
+                    layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+                    autoDisplay:false,
+                }, 'google_translate_element');
+            }
+            
+            function googleTranslateElementInit() {
+                new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+            }
+                */
+    </script>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+<!-- END GOOGLE TRANSLATE -->
+<script src="assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="https://unicons.iconscout.com/release/v4.0.0/script/monochrome/bundle.js"></script>
+
+
+<!-- Choice Js -->
+<script src="assets/libs/choices.js/public/assets/scripts/choices.min.js"></script>
+
+<!-- Swiper Js -->
+<script src="assets/libs/swiper/swiper-bundle.min.js"></script>
+
+<!-- Job-list Init Js -->
+<script src="assets/js/pages/job-list.init.js"></script>
+
+<!-- Switcher Js -->
+<script src="assets/js/pages/switcher.init.js"></script>
+
+<script src="assets/js/pages/index.init.js"></script>
+
+<script src="assets/js/app.js"></script>
+<script src="./tmlibrary/js/theme.js"></script>
+
+</body>
+</html>
