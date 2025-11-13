@@ -1,0 +1,25 @@
+{
+  "mcpServers": {
+    "resend": {
+      "command": "node",
+      "args": [
+        "/d/projects/project-akhdan/bekerjakeluarnegri.com/node_modules/@skanda-yutori/mcp-send-email/build/index.js"
+      ],
+      "env": {
+        "RESEND_API_KEY": "re_9Z4bEPgS_4S8Lyaq47fUvjPe4dS5kL8jU"
+      }
+    },
+    "dokploy-mcp": {
+      "command": "npx",
+      "args": ["-y", "@ahdev/dokploy-mcp"],
+      "env": {
+        "DOKPLOY_URL": "http://149.102.145.30:3000/api",
+        "DOKPLOY_API_KEY": "mcpiQBPswFGBEbPAWaNNHrfEEANXDoiCVQdvzeMikRtDDawvINEcwOTpTFSeTpcGVND"
+      }
+    },
+    "taskmaster-ai": {
+      "command": "npx",
+      "args": ["-y", "task-master-ai"]
+    }
+  }
+}
