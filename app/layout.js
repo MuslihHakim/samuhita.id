@@ -2,7 +2,7 @@ import './globals.css'
 import { ThemeProvider } from '@/components/theme-provider'
 
 export const metadata = {
-  title: 'BekerjaKeluarNegri.com - Gerbang Menuju Karir Internasional',
+  title: 'Samuhita.id - Gerbang Menuju Karir Internasional',
   description: 'Wujudkan mimpimu bekerja di luar negeri. Daftarkan diri Anda, biarkan agensi internasional menemukan Anda.',
 }
 

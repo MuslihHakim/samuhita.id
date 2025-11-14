@@ -1,6 +1,6 @@
 # Implementasi: Landing Baru + Lowongan Pekerjaan
 
-Tujuan: Menyamakan alur dan fitur landing bekerjakeluarnegri.com dengan hiredglobal.co tanpa mengubah fungsi inti pendaftaran (submissions) yang sudah ada. Fokus utama:
+Tujuan: Menyamakan alur dan fitur landing samuhita.id dengan hiredglobal.co tanpa mengubah fungsi inti pendaftaran (submissions) yang sudah ada. Fokus utama:
 - Landing memiliki tombol CTA “Daftar” (bukan form langsung) yang menuju halaman form pendaftaran terpisah.
 - Menambahkan section “Lowongan Pekerjaan” di landing sebelum “Kenapa Memilih Kami?”.
 - Halaman detail lowongan dengan tombol “Daftar” yang mengarah ke halaman form pendaftaran.

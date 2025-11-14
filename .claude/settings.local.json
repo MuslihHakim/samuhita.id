@@ -42,7 +42,7 @@
       "Bash(timeout:*)",
       "Bash(cmd:*)",
       "mcp__dokploy-mcp__project-all",
-      "WebFetch(domain:bekerjakeluarnegri.com)",
+      "WebFetch(domain:samuhita.id)",
       "Bash(DOKPLOY_URL=\"http://149.102.145.30:3000/api\" DOKPLOY_API_KEY=\"mcpiQBPswFGBEbPAWaNNHrfEEANXDoiCVQdvzeMikRtDDawvINEcwOTpTFSeTpcGVND\" npx -y @ahdev/dokploy-mcp list-projects:*)",
       "WebFetch(domain:149.102.145.30)",
       "Bash(nslookup:*)",

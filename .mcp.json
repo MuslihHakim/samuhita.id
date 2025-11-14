@@ -3,7 +3,7 @@
     "resend": {
       "command": "node",
       "args": [
-        "/d/projects/project-akhdan/bekerjakeluarnegri.com/node_modules/@skanda-yutori/mcp-send-email/build/index.js"
+        "node_modules/@skanda-yutori/mcp-send-email/build/index.js"
       ],
       "env": {
         "RESEND_API_KEY": "re_9Z4bEPgS_4S8Lyaq47fUvjPe4dS5kL8jU"

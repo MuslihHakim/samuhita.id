@@ -31,7 +31,7 @@ export default function DaftarPage() {
 
   const openWhatsApp = (fullName) => {
     const phoneNumber = '6285881981889';
-    const message = `Halo saya ${fullName} sudah melakukan registrasi akun di portal bekerjakeluarnegri.com`;
+    const message = `Halo saya ${fullName} sudah melakukan registrasi akun di portal samuhita.id`;
     const encodedMessage = encodeURIComponent(message);
     const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
     window.open(whatsappUrl, '_blank');
@@ -118,10 +118,10 @@ export default function DaftarPage() {
         <div className="container mx-auto px-4 py-3 sm:py-4 md:py-4 lg:py-4 flex justify-between items-center">
           <div className="flex items-center gap-2 sm:gap-3 md:gap-3">
             <div className="w-8 h-8 sm:w-11 sm:h-11 md:w-12 md:h-12 bg-gradient-to-br from-primary to-teal-600 rounded-xl flex items-center justify-center shadow-lg">
-              <span className="text-white font-bold text-sm sm:text-xl md:text-2xl">B</span>
+              <span className="text-white font-bold text-sm sm:text-xl md:text-2xl">S</span>
             </div>
             <div>
-              <h1 className="text-sm sm:text-lg md:text-xl lg:text-2xl font-bold bg-gradient-to-r from-primary to-teal-600 bg-clip-text text-transparent leading-tight">BekerjaKeluarNegri.com</h1>
+              <h1 className="text-sm sm:text-lg md:text-xl lg:text-2xl font-bold bg-gradient-to-r from-primary to-teal-600 bg-clip-text text-transparent leading-tight">Samuhita.id</h1>
               <p className="text-xs sm:text-xs md:text-sm text-muted-foreground hidden sm:block">Platform Karir Internasional</p>
             </div>
           </div>
@@ -183,4 +183,3 @@ export default function DaftarPage() {
     </div>
   );
 }
-

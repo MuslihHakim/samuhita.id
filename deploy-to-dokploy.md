@@ -1,4 +1,4 @@
-# Deployment Guide for BekerjaLuarNegri.com to Dokploy
+# Deployment Guide for Samuhita.id to Dokploy
 
 ## Manual Deployment Steps (via Dokploy Web Interface)
 
@@ -13,7 +13,7 @@
 4. Choose "projectakhdan Projects" as the project
 
 ### 3. Configure Application Settings
-- **Application Name**: `bekerjakeluarnegri-com`
+- **Application Name**: `samuhita-id`
 - **Repository**:
   - URL: Your Git repository URL
   - Branch: `main`
